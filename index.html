@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATHMEET - Elevating Athletes Everywhere</title>
+    <style>
+        :root {
+            --primary-color: #0a0a1f;
+            --secondary-color: #ff6b00;
+            --accent-color: #00a8ff;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient-1: linear-gradient(135deg, #0a0a1f, #1a1a3d);
+            --gradient-2: linear-gradient(45deg, #ff6b00, #ff8c38);
+            --gradient-sport: linear-gradient(135deg, #00a8ff, #0080ff);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: rgba(10, 10, 31, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .logo::before {
+            content: '🏆';
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 10, 31, 0.7), rgba(10, 10, 31, 0.7)), 
+                        url('/api/placeholder/1920/1080') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 107, 0, 0.1), transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 168, 255, 0.1), transparent 50%);
+        }
+
+        .sport-icons {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .sport-icons:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .sport-icons:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
+        .sport-icons:nth-child(3) { top: 30%; right: 15%; animation-delay: 2s; }
+        .sport-icons:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: var(--secondary-color);
+            text-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--gradient-2);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .features {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.05) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: transform 0.5s;
+        }
+
+        .feature-card:hover::before {
+            transform: rotate(45deg) translate(10%, 10%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.3));
+        }
+
+        .athletes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .athlete-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .athlete-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        .athlete-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .athlete-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .athlete-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .athlete-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(10, 10, 31, 0.8));
+        }
+
+        .athlete-info {
+            padding: 1.5rem;
+        }
+
+        .athlete-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+        }
+
+        .athlete-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.featured {
+            background: var(--gradient-sport);
+            transform: scale(1.05);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .price span {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--gradient-1);
+            max-width: 800px;
+            margin: 5rem auto;
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ATH<span>MEET</span></a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#athletes">Athletes</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="sport-icons">⚽</div>
+        <div class="sport-icons">🏀</div>
+        <div class="sport-icons">🎾</div>
+        <div class="sport-icons">🏊</div>
+        <div class="hero-content">
+            <h1>Welcome to <span>ATHMEET</span></h1>
+            <p>Elevating Athletes Everywhere</p>
+            <p>Connect with Olympic and elite athletes for personalized mentorship and coaching</p>
+            <a href="#athletes" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <h2 class="section-title">Platform Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🏅</div>
+                <h3>Pro Athlete Profiles</h3>
+                <p>Showcase expertise, offer services, and manage appointments with an integrated meeting platform</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📽️</div>
+                <h3>Professional Media Library</h3>
+                <p>Access high-quality resources and content created by elite athletes and experts</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛍️</div>
+                <h3>Digital Sports Store</h3>
+                <p>Promote and sell digital products, e-books, courses, and athlete-endorsed services</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Community Hub</h3>
+                <p>Connect, share knowledge, and join exclusive athlete events and discussions</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="athletes" class="section" style="background: rgba(255, 255, 255, 0.02);">
+        <h2 class="section-title">Our Elite Athletes</h2>
+        <div class="athletes-grid">
+            <div class="athlete-card" onclick="openAthleteModal('ori-sasson')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Ori Sasson - Olympic Judo Bronze Medalist wearing Olympic medal"></div>
+                <div class="athlete-info">
+                    <h3>Ori Sasson</h3>
+                    <p>Olympic Medalist & Lecturer</p>
+                    <p>Judo Expert - Mindset & Performance Coaching</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('julia-glushko')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Julia Glushko - Professional Tennis Player"></div>
+                <div class="athlete-info">
+                    <h3>Julia Glushko</h3>
+                    <p>Professional Tennis Player</p>
+                    <p>Mental Training & Competition Preparation</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('yakov-toumarkin')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Yakov Toumarkin - Swimming champion in pool"></div>
+                <div class="athlete-info">
+                    <h3>Yakov Toumarkin</h3>
+                    <p>Swimming Champion</p>
+                    <p>Training Techniques & Performance Optimization</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('chen-pomeranz')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Chen Pomeranz - Handball player in action"></div>
+                <div class="athlete-info">
+                    <h3>Chen Pomeranz</h3>
+                    <p>Professional Handball Player</p>
+                    <p>Team Sports Strategy & Leadership</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('tal-flicker')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Tal Flicker - Judo champion in competition"></div>
+                <div class="athlete-info">
+                    <h3>Tal Flicker</h3>
+                    <p>Judo Champion</p>
+                    <p>Competition Preparation & Mental Training</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('alexander-shatilov')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Alexander Shatilov - Olympic gymnast"></div>
+                <div class="athlete-info">
+                    <h3>Alexander Shatilov</h3>
+                    <p>Olympic Gymnast</p>
+                    <p>Artistic Gymnastics & Performance</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('baruch-shmailov')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Baruch Shmailov - Judo athlete with medals"></div>
+                <div class="athlete-info">
+                    <h3>Baruch Shmailov</h3>
+                    <p>Judo Competitor</p>
+                    <p>Technical Training & Competition Strategy</p>
+                </div>
+            </div>
+            <div class="athlete-card" onclick="openAthleteModal('andy-ram')">
+                <div class="athlete-image" style="background-image: url('/api/placeholder/400/300')" title="Andy Ram - Tennis Grand Slam Champion"></div>
+                <div class="athlete-info">
+                    <h3>Andy Ram</h3>
+                    <p>Tennis Grand Slam Champion</p>
+                    <p>Doubles Strategy & Mental Game</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section">
+        <h2 class="section-title">Coaching Plans</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Boost</h3>
+                <div class="price">$299<span>/4 sessions</span></div>
+                <ul class="feature-list">
+                    <li>4 one-hour sessions</li>
+                    <li>Perfect for short-term goals</li>
+                    <li>Measurable progress tracking</li>
+                    <li>Priority scheduling</li>
+                </ul>
+                <a href="#contact" class="cta-button">Choose Plan</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Momentum</h3>
+                <div class="price">$499<span>/8 sessions</span></div>
+                <ul class="feature-list">
+                    <li>8 one-hour sessions</li>
+                    <li>Ideal for deeper focus</li>
+                    <li>Personalized training plan</li>
+                    <li>Video analysis included</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#contact" class="cta-button">Choose Plan</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Journey</h3>
+                <div class="price">$699<span>/12 sessions</span></div>
+                <ul class="feature-list">
+                    <li>12 one-hour sessions</li>
+                    <li>Long-term development</li>
+                    <li>Comprehensive coaching</li>
+                    <li>Performance analytics</li>
+                    <li>VIP support</li>
+                </ul>
+                <a href="#contact" class="cta-button">Choose Plan</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section" style="background: rgba(255, 255, 255, 0.02);">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-form">
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 ATHMEET. All rights reserved.</p>
+        <p>Founded by Ori Sasson & Tomer Yehudayan</p>
+    </footer>
+
+    <!-- Athlete Modal -->
+    <div id="athleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Athletes data
+        const athletesData = {
+            'ori-sasson': {
+                name: 'Ori Sasson',
+                title: 'Olympic Medalist & Lecturer',
+                expertise: 'Judo, Mental Performance, Leadership',
+                bio: 'Olympic Bronze Medalist in Judo from Rio 2016, specializing in mental performance coaching and athlete development. Extensive experience working with both elite and developing athletes.',
+                services: [
+                    'Mental toughness training',
+                    'Competition strategy development',
+                    'Leadership coaching for athletes',
+                    'Performance optimization'
+                ]
+            },
+            'julia-glushko': {
+                name: 'Julia Glushko',
+                title: 'Professional Tennis Player',
+                expertise: 'Tennis, Competition Preparation, Mental Training',
+                bio: 'WTA Tour professional representing Israel with extensive international competition experience. Specializes in mental preparation and competition strategies.',
+                services: [
+                    'Competition preparation',
+                    'Mental resilience training',
+                    'Technique optimization',
+                    'Career development coaching'
+                ]
+            },
+            'yakov-toumarkin': {
+                name: 'Yakov Toumarkin',
+                title: 'Swimming Champion',
+                expertise: 'Swimming, Training Techniques, Performance',
+                bio: 'Multiple national champion and international competitor. Olympic swimming competitor with expertise in training methodology and performance optimization.',
+                services: [
+                    'Swimming technique analysis',
+                    'Training program design',
+                    'Competition strategy',
+                    'Recovery optimization'
+                ]
+            },
+            'chen-pomeranz': {
+                name: 'Chen Pomeranz',
+                title: 'Professional Handball Player',
+                expertise: 'Handball, Team Sports, Leadership',
+                bio: 'Professional handball player with international competition experience. Specializes in team dynamics and competitive strategy.',
+                services: [
+                    'Team building strategies',
+                    'Leadership development',
+                    'Game strategy analysis',
+                    'Physical conditioning'
+                ]
+            },
+            'tal-flicker': {
+                name: 'Tal Flicker',
+                title: 'Judo Champion',
+                expertise: 'Judo, Competition Preparation, Mental Training',
+                bio: 'World champion judoka with extensive international experience. Specializes in competition preparation and mental conditioning.',
+                services: [
+                    'Competition mindset training',
+                    'Technical skill development',
+                    'Mental preparation techniques',
+                    'Performance under pressure'
+                ]
+            },
+            'alexander-shatilov': {
+                name: 'Alexander Shatilov',
+                title: 'Olympic Gymnast',
+                expertise: 'Artistic Gymnastics, Performance, Competition',
+                bio: 'Multiple Olympic Games competitor in artistic gymnastics. Expert in high-performance training and competition preparation.',
+                services: [
+                    'Technical skill development',
+                    'Competition preparation',
+                    'Mental focus training',
+                    'Performance optimization'
+                ]
+            },
+            'baruch-shmailov': {
+                name: 'Baruch Shmailov',
+                title: 'Judo Competitor',
+                expertise: 'Judo, Technique, Competition Strategy',
+                bio: 'International judo competitor with medal-winning performances at major championships. Specializes in technical training and competition strategy.',
+                services: [
+                    'Technical skill refinement',
+                    'Competition strategy',
+                    'Mental preparation',
+                    'Performance analysis'
+                ]
+            },
+            'andy-ram': {
+                name: 'Andy Ram',
+                title: 'Tennis Grand Slam Champion',
+                expertise: 'Tennis, Doubles Strategy, Mental Game',
+                bio: 'Grand Slam doubles champion with multiple ATP titles. Expert in doubles strategy and mental aspects of professional tennis.',
+                services: [
+                    'Doubles strategy development',
+                    'Mental game coaching',
+                    'Career transition support',
+                    'Tournament preparation'
+                ]
+            }
+        };
+
+        // Modal functions
+        function openAthleteModal(athleteId) {
+            const athlete = athletesData[athleteId];
+            if (!athlete) {
+                console.error('Athlete not found:', athleteId);
+                return;
+            }
+            const modal = document.getElementById('athleteModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2>${athlete.name}</h2>
+                <h3>${athlete.title}</h3>
+                <p><strong>Expertise:</strong> ${athlete.expertise}</p>
+                <p>${athlete.bio}</p>
+                <h4>Services Offered:</h4>
+                <ul class="feature-list">
+                    ${athlete.services.map(service => `<li>${service}</li>`).join('')}
+                </ul>
+                <a href="#contact" class="cta-button" onclick="closeModal(); scrollToContact();">Book a Session</a>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeModal() {
+            document.getElementById('athleteModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        function scrollToContact() {
+            setTimeout(() => {
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('athleteModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // In a real application, this would send data to a server
+            console.log('Form submitted:', { name, email, phone, message });
+            
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.style.cssText = `
+                background: var(--secondary-color);
+                color: var(--primary-color);
+                padding: 1rem;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+                text-align: center;
+                animation: fadeIn 0.5s ease-in;
+            `;
+            successMessage.textContent = 'Thank you for your message! We will contact you soon.';
+            
+            const form = event.target;
+            form.parentNode.insertBefore(successMessage, form);
+            
+            // Reset form
+            form.reset();
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        }
+
+        // Smooth scroll enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update URL without jumping
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+
+        // Add animation for success message
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Handle pricing button clicks
+        document.querySelectorAll('.pricing-card .cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const planName = this.closest('.pricing-card').querySelector('h3').textContent;
+                
+                // Scroll to contact form
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Pre-fill message with plan name
+                setTimeout(() => {
+                    const messageField = document.getElementById('message');
+                    messageField.value = `I'm interested in the ${planName} plan. Please provide more information.`;
+                    messageField.focus();
+                }, 500);
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.style.background = 'rgba(26, 26, 61, 0.95)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(26, 26, 61, 0.9)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            // Hide/show navbar on scroll
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Add smooth transition for navbar
+        document.querySelector('.navbar').style.transition = 'all 0.3s ease';
+
+        // Mobile menu toggle (for future implementation)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
